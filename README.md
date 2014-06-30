@@ -33,7 +33,7 @@ So the conclusion is that the maximum size of a ROM is 0xE000 bytes (= 57344)
 
 Building
 ========
-Change the first line of the Makefile.
+Change the URL in the romscript.ipxe file.
 
 I run this on my CentOS system and simply type
 
@@ -48,5 +48,9 @@ See: http://etherboot.org/wiki/romburning/vbox
 - Create a virtual machine ( Here I call it "Hadoop Client" ) and do settings that you want to boot from network
 - Copy the 8086100e.rom into the directory of that VM
 - Add the ROM image to the VM config:
-Under Linux:  vboxmanage setextradata "Hadoop Client" VBoxInternal/Devices/pcbios/0/Config/LanBootRom 8086100e.rom
-Under Windows: "c:\Program Files\Oracle\VirtualBox\VBoxManage.exe" setextradata "Hadoop Client" VBoxInternal/Devices/pcbios/0/Config/LanBootRom "C:\VirtualBox VMs\Hadoop Client\8086100e.rom" 
+
+Under Linux: 
+- vboxmanage setextradata "Hadoop Client" VBoxInternal/Devices/pcbios/0/Config/LanBootRom 8086100e.rom
+
+Under Windows: 
+- "c:\Program Files\Oracle\VirtualBox\VBoxManage.exe" setextradata "Hadoop Client" VBoxInternal/Devices/pcbios/0/Config/LanBootRom "C:\VirtualBox VMs\Hadoop Client\8086100e.rom" 
