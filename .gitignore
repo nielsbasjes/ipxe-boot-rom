@@ -1,0 +1,5 @@
+*.rom
+*.mrom
+*.efirom
+*.iso
+ipxe
