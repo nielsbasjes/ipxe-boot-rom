@@ -23,7 +23,7 @@ clean::
 	@echo Building $@
 	@( \
 	  cd ipxe/src ;\
-	  make -j2 bin/$@ EMBED=../../$< ;\
+	  make -j4 bin/$@ EMBED=../../$< ;\
 	  cp bin/$@ ../..;\
 	)
 	@( \

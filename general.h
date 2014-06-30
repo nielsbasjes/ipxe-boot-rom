@@ -31,7 +31,7 @@
 #undef	SANBOOT_PROTO_FCP	/* Fibre Channel protocol */
 
 #define	AUTOBOOT_CMD		/* Automatic booting */
-#undef	NVO_CMD			/* Non-volatile option storage commands */
+#define	NVO_CMD			/* Non-volatile option storage commands */
 #undef	CONFIG_CMD		/* Option configuration console */
 #undef	IFMGMT_CMD		/* Interface management commands */
 #undef	IWMGMT_CMD		/* Wireless interface management commands */
@@ -44,7 +44,7 @@
 #define LOGIN_CMD		/* Login command */
 #undef SYNC_CMD		/* Sync command */
 #undef NSLOOKUP_CMD		/* DNS resolving command */
-#undef TIME_CMD		/* Time commands */
+#define TIME_CMD		/* Time commands */
 #undef DIGEST_CMD		/* Image crypto digest commands */
 #undef LOTEST_CMD		/* Loopback testing commands */
 #undef VLAN_CMD		/* VLAN commands */
