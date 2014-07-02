@@ -50,7 +50,7 @@
 #undef VLAN_CMD		/* VLAN commands */
 #undef PXE_CMD		/* PXE commands */
 #define REBOOT_CMD		/* Reboot command */
-#undef POWEROFF_CMD		/* Power off command */
+#define POWEROFF_CMD		/* Power off command */
 #undef IMAGE_TRUST_CMD	/* Image trust management commands */
 #undef PCI_CMD		/* PCI commands */
 #undef PARAM_CMD		/* Form parameter commands */
