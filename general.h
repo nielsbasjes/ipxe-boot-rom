@@ -39,7 +39,7 @@
 #undef	ROUTE_CMD		/* Routing table management commands */
 #define IMAGE_CMD		/* Image management commands */
 #define DHCP_CMD		/* DHCP management commands */
-#define SANBOOT_CMD		/* SAN boot commands */
+#undef SANBOOT_CMD		/* SAN boot commands */
 #undef MENU_CMD		/* Menu commands */
 #define LOGIN_CMD		/* Login command */
 #undef SYNC_CMD		/* Sync command */
@@ -49,7 +49,7 @@
 #undef LOTEST_CMD		/* Loopback testing commands */
 #undef VLAN_CMD		/* VLAN commands */
 #undef PXE_CMD		/* PXE commands */
-#undef REBOOT_CMD		/* Reboot command */
+#define REBOOT_CMD		/* Reboot command */
 #undef POWEROFF_CMD		/* Power off command */
 #undef IMAGE_TRUST_CMD	/* Image trust management commands */
 #undef PCI_CMD		/* PCI commands */
