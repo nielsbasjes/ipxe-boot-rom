@@ -1,0 +1,4 @@
+#!ipxe
+dhcp
+chain ##BASEURL##/menu.ipxe ||
+sanboot --no-describe --drive 0x80

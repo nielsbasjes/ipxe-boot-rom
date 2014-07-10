@@ -1,3 +1,7 @@
+BASEURL=http://ipxe.example.com
+# ============================================================================
+# Desired end results:
+#
 # See http://etherboot.org/wiki/romburning/vbox
 # Default for Most Guest VM OS Choices
 all:: 10222000.rom 
@@ -12,8 +16,8 @@ all:: menuloader.pxe
 ipxe-full:
 	@echo Downloading the iPXE sources
 	git clone git://git.ipxe.org/ipxe.git $@
-	rm ipxe-full/src/config/local/general.h
-	rm ipxe-full/src/config/local/console.h
+	-@rm -f ipxe-full/src/config/local/general.h
+	-@rm -f ipxe-full/src/config/local/console.h
 
 ipxe-full/src/config/local/general.h: general-full.h ipxe-full
 	cp $< $@
@@ -29,7 +33,7 @@ clean::
 ipxe-rom: ipxe-full
 	@echo Downloading the iPXE sources
 	@cp -a $< $@
-	@rm ipxe-rom/src/config/local/general.h
+	-@rm -f ipxe-rom/src/config/local/general.h
 
 clean::
 	-@[ -d ipxe-rom ] && cd ipxe-rom/src && make clean	
@@ -39,6 +43,14 @@ ipxe-rom/src/config/local/general.h: general-rom.h ipxe-rom
 
 clean::
 	-@rm -f ipxe-rom/src/config/local/general.h
+
+.PRECIOUS:script-%.ipxe
+
+script-%.ipxe:script-%.ipxe.in Makefile
+	cat $< | sed 's@##BASEURL##@${BASEURL}@g' > $@
+
+clean::
+	-@rm -f script-*.ipxe
 
 %.rom: script-rom.ipxe ipxe-rom Makefile ipxe-rom/src/config/local/general.h 
 	@echo Building $@

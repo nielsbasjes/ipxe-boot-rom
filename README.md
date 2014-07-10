@@ -41,8 +41,7 @@ So the conclusion is that the maximum size of a ROM is 0xE000 bytes (= 57344)
 Building
 ========
 Make sure the right URLs have been configured:
-- The script-rom.ipxe should point to the website where menuloader.pxe file can be downloaded.
-- The script-full.ipxe should point to the website where menu.ipxe file can be downloaded.
+At the top of the Makefile your should set the BASEURL to the right spot.
 
 I run this on my CentOS system and simply type
 
@@ -53,6 +52,7 @@ You will have two files:
 - menuloader.pxe which is the full featured ipxe that will load the actual menu.
 
 Now put the menuloader.pxe and your menu.ipxe script on the URLs you configured and add the ROM into the VirtualBox VM.
+You can double check the urls present in script-rom.ipxe and script-full.ipxe.
 
 Installing the new LAN boot ROM into VirtualBox
 ========

@@ -1,4 +1,0 @@
-#!ipxe
-dhcp
-chain http://bootscript.example.com/menu.ipxe ||
-sanboot --no-describe --drive 0x80
