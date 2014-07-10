@@ -2,6 +2,9 @@ iPXE boot rom
 =============
 
 This is a small set of scripts that simply download and build a bootrom of iPXE that can be used as an alternative bootrom in VirtualBox.
+This consists of two parts:
+- The ROM that really can do only one thing: Load the 'full' ipxe from a website.
+- The full iPXE that will load the real menu from a website.
 
 Why?
 ====
@@ -9,7 +12,11 @@ I found that building a working ROM is harder than it seems.
 Without any configuration the image will be too large.
 
 So in order to make this work a LOT of features had to be disabled.
-This is done by creating a set of overrules that are located in the general.h file
+This is done by creating a set of overrules that are located in the general-rom.h file
+
+But then we have a severely limited version of iPXE.
+So what I do here is I then load a full featured version of iPXE from a website and then load the menu I want.
+This way you have the boot strap info in the (limited) rom and you get to use all of the power of iPXE.
 
 VirtualBox LAN boot ROM Size
 ==========
@@ -33,11 +40,19 @@ So the conclusion is that the maximum size of a ROM is 0xE000 bytes (= 57344)
 
 Building
 ========
-Change the URL in the romscript.ipxe file.
+Make sure the right URLs have been configured:
+- The script-rom.ipxe should point to the website where menuloader.pxe file can be downloaded.
+- The script-full.ipxe should point to the website where menu.ipxe file can be downloaded.
 
 I run this on my CentOS system and simply type
 
     make   
+
+You will have two files:
+- 8086100e.rom which is the rom file for the virtual machine (VirtualBox with Extension Pack).
+- menuloader.pxe which is the full featured ipxe that will load the actual menu.
+
+Now put the menuloader.pxe and your menu.ipxe script on the URLs you configured and add the ROM into the VirtualBox VM.
 
 Installing the new LAN boot ROM into VirtualBox
 ========

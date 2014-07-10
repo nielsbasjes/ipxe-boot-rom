@@ -39,12 +39,12 @@
 #undef	ROUTE_CMD		/* Routing table management commands */
 #define IMAGE_CMD		/* Image management commands */
 #define DHCP_CMD		/* DHCP management commands */
-#undef SANBOOT_CMD		/* SAN boot commands */
+#define SANBOOT_CMD		/* SAN boot commands */
 #undef MENU_CMD		/* Menu commands */
-#define LOGIN_CMD		/* Login command */
+#undef LOGIN_CMD		/* Login command */
 #undef SYNC_CMD		/* Sync command */
 #undef NSLOOKUP_CMD		/* DNS resolving command */
-#define TIME_CMD		/* Time commands */
+#undef TIME_CMD		/* Time commands */
 #undef DIGEST_CMD		/* Image crypto digest commands */
 #undef LOTEST_CMD		/* Loopback testing commands */
 #undef VLAN_CMD		/* VLAN commands */

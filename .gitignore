@@ -2,4 +2,6 @@
 *.mrom
 *.efirom
 *.iso
-ipxe
+ipxe.pxe
+ipxe-full
+ipxe-rom

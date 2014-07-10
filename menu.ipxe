@@ -1,0 +1,19 @@
+#!ipxe
+
+# ===================================================================
+# THIS IS JUST AN IMCOMPLETE EXAMPLE OF WHAT YOU CAN DO WITH IPXE!!!
+# ===================================================================
+
+console --x 1024 --y 768 --picture http://ipxe.org/_media/logos/ipxe-large.png --depth 32
+cpair --foreground 7 --background 4 0
+
+menu Please choose what to install
+item c65 CentOS 6.5
+item c70 CentOS 7.0
+choose os
+
+echo ${os}
+prompt
+
+
+# Be creative :)

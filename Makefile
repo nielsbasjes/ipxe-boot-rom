@@ -4,25 +4,46 @@ all:: 10222000.rom
 # Intel PRO/1000 MT Desktop (82540EM) Default for Windows Vista/Windows 7 VMs
 all:: 8086100e.rom 
 
+# The full featured 'second stage' version that doesn't fit into the ROM
+all:: menuloader.pxe
+
 # ============================================================================
 
-ipxe:
+ipxe-full:
 	@echo Downloading the iPXE sources
-	git clone git://git.ipxe.org/ipxe.git
+	git clone git://git.ipxe.org/ipxe.git $@
+	rm ipxe-full/src/config/local/general.h
+	rm ipxe-full/src/config/local/console.h
 
-clean::
-	cd ipxe/src && make clean	
+ipxe-full/src/config/local/general.h: general-full.h ipxe-full
+	cp $< $@
 
-ipxe/src/config/local/general.h: general.h ipxe
+ipxe-full/src/config/local/console.h: console-full.h ipxe-full
 	cp $< $@
 
 clean::
-	rm -f ipxe/src/config/local/general.h
+	-@[ -d ipxe-full ] && cd ipxe-full/src && make clean	
+	-@rm -f ipxe-full/src/config/local/general.h
+	-@rm -f ipxe-rom/src/config/local/console.h
 
-%.rom: romscript.ipxe ipxe Makefile ipxe/src/config/local/general.h
+ipxe-rom: ipxe-full
+	@echo Downloading the iPXE sources
+	@cp -a $< $@
+	@rm ipxe-rom/src/config/local/general.h
+
+clean::
+	-@[ -d ipxe-rom ] && cd ipxe-rom/src && make clean	
+
+ipxe-rom/src/config/local/general.h: general-rom.h ipxe-rom
+	cp $< $@
+
+clean::
+	-@rm -f ipxe-rom/src/config/local/general.h
+
+%.rom: script-rom.ipxe ipxe-rom Makefile ipxe-rom/src/config/local/general.h 
 	@echo Building $@
 	@( \
-	  cd ipxe/src ;\
+	  cd ipxe-rom/src ;\
 	  make -j4 bin/$@ EMBED=../../$< ;\
 	  cp bin/$@ ../..;\
 	)
@@ -38,3 +59,14 @@ clean::
 
 clean::
 	rm -f *.rom *.iso
+
+menuloader.pxe: script-full.ipxe ipxe-full Makefile ipxe-full/src/config/local/general.h ipxe-full/src/config/local/console.h
+	@echo Building $@
+	@( \
+	  cd ipxe-full/src ;\
+	  make -j4 bin/ipxe.pxe EMBED=../../$< ;\
+	  cp bin/ipxe.pxe ../../$@;\
+	)
+
+clean::
+	rm -f menuloader.pxe

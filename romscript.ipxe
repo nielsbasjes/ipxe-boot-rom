@@ -1,3 +1,0 @@
-#!ipxe
-dhcp
-chain http://bootscript.example.com/boot.ipxe 
